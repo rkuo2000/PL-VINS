@@ -1,5 +1,5 @@
 # [PL-VINS](https://github.com/cnqiangfu/PL-VINS) branch for Open 4.2.0
-[PL-VINS: Real-Time Monocular Visual-Inertial SLAM with Point and Line Features](https://arxiv.org/pdf/2009.07462.pdf)
+**[PL-VINS: Real-Time Monocular Visual-Inertial SLAM with Point and Line Features](https://arxiv.org/pdf/2009.07462.pdf)**
 ## Modifications:
 1. all CMakeFiles.txt: set(CMAKE_CXX_FLAGS "-std=c++14")
 2. #include <opencv2/imgproc/types_c.h>
