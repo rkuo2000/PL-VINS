@@ -1238,7 +1238,7 @@ Chessboard::generateQuads(std::vector<ChessboardQuadPtr>& quads,
             dp = pt[1] - pt[2];
             double d4 = sqrt(dp.dot(dp));
 
-            if (!(flags & CV_CALIB_CB_FILTER_QUADS) ||
+            if (!(flags & cv::CALIB_CB_FILTER_QUADS) ||
                 (d3*4 > d4 && d4*4 > d3 && d3*d4 < area*1.5 && area > minSize &&
                 d1 >= 0.15 * p && d2 >= 0.15 * p))
             {
