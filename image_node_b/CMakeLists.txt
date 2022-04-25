@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(image_node_b)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 if(WIN32 AND NOT CYGWIN)
     set(HOME $ENV{PROFILE})
 else()
