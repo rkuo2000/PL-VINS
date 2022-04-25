@@ -19,6 +19,7 @@
    - feature_tracker/src/linefeature_tracker.cpp
 7. cv::FONT_HERSHEY_SIMPLEX
    - pose_graph/src/keyframe.cpp
+   - pose_graph/src/pose_graph.cpp
 
 ## 1. Prerequisites
 ### Ubuntu 20.04.4-LTS
