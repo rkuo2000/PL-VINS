@@ -1,49 +1,79 @@
-# PL-VINS: Real-Time Monocular Visual-Inertial SLAM with Point and Line Features
-
-[PL-VINS](https://arxiv.org/pdf/2009.07462.pdf) can yield higher accuracy than VINS-Mono (2018 IROS best Paper, TRO Honorable Mention Best Paper) at the same run rate on a low-power CPU Intel Core i7-10710U @1.10 GHz. 
-
-Thank Jialong Wang (湖南大学机器人视觉感知与控制技术国家工程实验室研三) for helping me code this system, he makes a huge contribution in this work. **BTW**: Mr Wang is really a SLAM enthusiast and looking for a related job. If you can provide a nice Opportunity, please contact him <slamdragon@qq.com >. 
-
-
-![image](https://github.com/cnqiangfu/PL-VINS/blob/master/support_files/plvins-vinsmono.png)
-
-
-This respository is an initial version, it will be improved further in the coming months.
-
-
-**DemoShow**: [youtube](https://youtu.be/MPf6HufbgdE) or [bilibili](https://www.bilibili.com/video/BV1464y1F7hk/)
-
-[![PL-VINS](https://img.youtube.com/vi/MPf6HufbgdE/0.jpg)](https://youtu.be/MPf6HufbgdE)
+# [PL-VINS](https://github.com/cnqiangfu/PL-VINS) branch for Open 4.2.0
+[PL-VINS: Real-Time Monocular Visual-Inertial SLAM with Point and Line Features](https://arxiv.org/pdf/2009.07462.pdf)
+## Modifications:
+1. all CMakeFiles.txt: set(CMAKE_CXX_FLAGS "-std=c++14")
+2. #include <opencv2/imgproc/types_c.h>
+   - camera_model/src/chessboard/Chessboard.cc
+3. CV_AA = cv::LINE_AA, CV_GRAY2BGR = cv::COLOR_GRAY2BGR, CV_RGB2GRAY = cv::COLOR_RGB2GRAY
+   - camera_model/src/intrinsic_calib.cc
+   - camera_model/src/calib/CameraCalibration.cc
+   - camera_model/src/chessboard/Chessboard.cc
+   - vins_estimator/src/featureTracker/feature_tracker.cpp
+4. cv::CALIB_CB_ADAPTIVE_THRESH, cv::CALIB_CB_NORMALIZE_IMAGE, cv::CALIB_CB_FILTER_QUADS, cv::CALIB_CB_FAST_CHECK
+   - camera_model/src/chessboard/Chessboard.cc:
+5. cv::FONT_HERSHEY_SIMPLEX
+   - loop_fusion/src/pose_graph.cpp
+6. CV_LOAD_IMAGE_GRAYSCALE = cv::IMREAD_GRAYSCALE
+   - vins_estimator/src/KITTIOdomTest.cpp
+   - vins_estimator/src/KITTIGPSTest.cpp
+7. modify output_path & pose_graph_save_path ("./output" & "./output/pose_graph")
+   - .yaml in config folder
 
 ## 1. Prerequisites
-1.1 **Ubuntu** and **ROS**
+### Ubuntu 20.04.4-LTS
+* Python 3.8.10
+* OpenCV 4.2.0
 
-Ubuntu 18.04. ROS Melodic, please google it.
-
-1.2. **Dependency**
-
-Eigen 3.3.4 + OpenCV 3.2+ Cere-solver: [Ceres Installation](http://ceres-solver.org/installation.html), remember to **sudo make install**.
-
-## 2. Build PL-VINS on ROS
-Clone the repository and catkin_make (# note that you will create a new workspace named *catkin_plvins*):
+### ROS1 installation
 ```
-	mkdir -p ~/catkin_plvins/src    
-	cd ~/catkin_plvins/
-	catkin_make
-	source devel/setup.bash
-	echo $ROS_PACKAGE_PATH             # test you have created it successfully
-	git clone https://github.com/cnqiangfu/PL-VINS.git
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+sudo apt-get update
+export ROS1_DISTRO=noetic # kinetic=16.04, melodic=18.04, noetic=20.04
+sudo apt-get install ros-$ROS1_DISTRO-desktop-full
+sudo apt-get install python3-catkin-tools python3-osrf-pycommon # ubuntu 20.04
+sudo apt-get install libeigen3-dev libboost-all-dev libceres-dev
 ```
-**Notice**: before the second catkin_make, you need to go through /PL-VINS/feature_tracker/CMakeLists.txt, see the sign **# Important** in the CMakeLists.txt, and modify two absolute paths to correctly find the modified LSD algorithm. You also need to make sure OpenCV 3.2 there.
+```
+echo "alias source_ros1=\"source /opt/ros/$ROS1_DISTRO/setup.bash\"" >> ~/.bashrc
+echo "alias source_devel=\"source devel/setup.bash\"" >> ~/.bashrc
+source ~/.bashrc
+```
 
-```	
-	catkin_make
-	source devel/setup.bash
+### [Ceres Solver installation](http://ceres-solver.org/installation.html)
+```
+sudo apt-get install cmake 
+sudo apt-get install libgoogle-glog-dev libgflags-dev
+sudo apt-get install libatlas-base-dev
+sudo apt-get install libeigen3-dev
+sudo apt-get install libsuitesparse-dev
+```
+```
+wget http://ceres-solver.org/ceres-solver-2.1.0.tar.gz
+tar zxf ceres-solver-2.1.0.tar.gz
+mkdir ceres-bin
+cd ceres-bin
+cmake ../ceres-solver-2.1.0
+make -j4
+make install
+```
+## 2. Build on ROS
+```
+sudo apt install metis
+source_ros1
+```
+```
+make -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+git clone https://github.com/rkuo/PL-VINS.git
+cd ../
+catkin build
+source devel/setup.bash
 ```
 
 ## 3. Run on EuRoC dataset
-
-Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets). We suggust you select difficult sequences to test.
+Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets). 
+We suggust you select difficult sequences to test.
 
 run in the ~/catkin_plvins/
 ```
@@ -60,38 +90,4 @@ Now you should be able to run PL-VINS in the ROS RViZ.
 **Note that**: if you want obtain motion trajectory and compare it to your method. Please modify the ouput paths: /PL-VINS/vins_estimator/src/visualization.cpp (trajectory without loop) and /PL-VINS/pose_graph/src/pose_graph.cpp (trajectory with loop). 
 
 **Note that**:It is an interesting thing we find that different CPU maybe yield different result whether VINS-Mono or PL-VINS, maybe the reason of ROS mechanism. Therefore, we suggest you test or compare methods on your machine by yourself. 
-
-
-## 4. Related Papers
-
-- **PL-VINS: Real-Time Monocular Visual-Inertial SLAM with Point and Line**.
-
-```
-@misc{fu2020plvins,
-      title={PL-VINS: Real-Time Monocular Visual-Inertial SLAM with Point and Line Features}, 
-      author={Qiang Fu and Jialong Wang and Hongshan Yu and Islam Ali and Feng Guo and Yijia He and Hong Zhang},
-      year={2020},
-      eprint={2009.07462},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}
-}
-```
-
-This paper is developed based on PL-VIO [1], VINS-Mono [2], and [3].
-```
-[1] Pl-vio: Tightly-coupled monocular visual-inertial odometry using point and line features
-
-[2] Vins-mono: A robust and versatile monocular visual-inertial state estimator
-
-[3] A robust RGB-D SLAM system with points and lines for low texture indoor environments
-```
-
-*If you find aforementioned works helpful for your research, please cite them.*
-
-## 5. Acknowledgements
-
-Thank Dr. Yijia He, Ji Zhao, Yue Guo, Wenhao He, and Kui Yuan(PL-VIO); Dr. Qin Tong, Dr. Peiliang Li, and Prof. Shen (VINS-Mono) very much.
-
-## 6. Licence
-The source code is released under [GPLv3](http://www.gnu.org/licenses/) license.
 
