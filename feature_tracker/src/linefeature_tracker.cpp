@@ -139,7 +139,7 @@ void LineFeatureTracker::readImage(const cv::Mat &_img)
     cv::Mat img;
     TicToc t_p;
     frame_cnt++;
-    cv::remap(_img, img, undist_map1_, undist_map2_, CV_INTER_LINEAR);
+    cv::remap(_img, img, undist_map1_, undist_map2_, cv::INTER_LINEAR);
     //ROS_INFO("undistortImage costs: %fms", t_p.toc());
     if (EQUALIZE)   // 直方图均衡化
     {
@@ -414,7 +414,7 @@ void LineFeatureTracker::readImage(const cv::Mat &_img)
     TicToc t_p;
     frame_cnt++;
 
-    cv::remap(_img, img, undist_map1_, undist_map2_, CV_INTER_LINEAR);
+    cv::remap(_img, img, undist_map1_, undist_map2_, cv::INTER_LINEAR);
 
 
 
