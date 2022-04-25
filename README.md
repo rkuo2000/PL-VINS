@@ -14,11 +14,6 @@
 5. cv::INTER_LINEAR
    - feature_tracker/src/feature_tracker.cpp
    - feature_tracker/src/linefeature_tracker.cpp
-6. CV_LOAD_IMAGE_GRAYSCALE = cv::IMREAD_GRAYSCALE
-   - vins_estimator/src/KITTIOdomTest.cpp
-   - vins_estimator/src/KITTIGPSTest.cpp
-7. modify output_path & pose_graph_save_path ("./output" & "./output/pose_graph")
-   - .yaml in config folder
 
 ## 1. Prerequisites
 ### Ubuntu 20.04.4-LTS
