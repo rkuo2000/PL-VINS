@@ -16,7 +16,9 @@
    - feature_tracker/src/feature_tracker.cpp
    - feature_tracker/src/linefeature_tracker.cpp
 6. cv::WINDOW_NORMAL
-   - feature_tracker/src/linefeature_tracker.cpp 
+   - feature_tracker/src/linefeature_tracker.cpp
+7. cv::FONT_HERSHEY_SIMPLEX
+   - pose_graph/src/keyframe.cpp
 
 ## 1. Prerequisites
 ### Ubuntu 20.04.4-LTS
