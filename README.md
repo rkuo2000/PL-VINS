@@ -14,6 +14,8 @@
 5. cv::INTER_LINEAR
    - feature_tracker/src/feature_tracker.cpp
    - feature_tracker/src/linefeature_tracker.cpp
+6. cv::WINDOW_NORMAL
+   - feature_tracker/src/linefeature_tracker.cpp 
 
 ## 1. Prerequisites
 ### Ubuntu 20.04.4-LTS
