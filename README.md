@@ -9,6 +9,7 @@
    - camera_model/src/calib/CameraCalibration.cc
    - camera_model/src/chessboard/Chessboard.cc
    - feature_tracker/src/feature_tracker_node.cpp
+   - pose_graph/src/ThirdParty/DVision/BRIEF.cpp
 4. cv::CALIB_CB_ADAPTIVE_THRESH, cv::CALIB_CB_NORMALIZE_IMAGE, cv::CALIB_CB_FILTER_QUADS, cv::CALIB_CB_FAST_CHECK
    - camera_model/src/chessboard/Chessboard.cc:
 5. cv::INTER_LINEAR
