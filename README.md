@@ -22,6 +22,7 @@
    - pose_graph/src/keyframe.cpp
    - pose_graph/src/pose_graph.cpp
 8. #include <opencv2/opencv.hpp>, #include <opencv2/highgui.hpp>
+   - vins_estimator/src/loop_closure/TemplatedLoopDetector.h
    - vins_estimator/src/loop_closure/loop_closure.h
    - vins_estimator/src/loop_closure/demoDetector.h
 
