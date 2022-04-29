@@ -23,8 +23,8 @@
    - pose_graph/src/pose_graph.cpp
 8. #include <opencv2/opencv.hpp>, #include <opencv2/highgui.hpp>
    - vins_estimator/src/loop_closure/TemplatedLoopDetector.h
-   - vins_estimator/src/loop_closure/loop_closure.h
    - vins_estimator/src/loop_closure/demoDetector.h
+   - vins_estimator/src/loop_closure/loop_closure.h   
 
 ## 1. Prerequisites
 ### Ubuntu 20.04.4-LTS
@@ -77,6 +77,7 @@ cd ../
 catkin build
 source devel/setup.bash
 ```
+*The build took ~37 hours on i7-920 @2.67GHz !!!*<br>
 
 ## 3. Run on EuRoC dataset
 Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets). 
