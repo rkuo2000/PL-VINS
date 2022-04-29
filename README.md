@@ -30,6 +30,7 @@
    - config/euroc/euroc_config_no_extrinsic.yaml
    - config/euroc/euroc_config.yaml
    - config/euroc/loop.yaml
+10. revise image_node_b/src/image_node_b.cpp per https://github.com/cnqiangfu/PL-VINS/issues/8
 
 ## 1. Prerequisites
 ### Ubuntu 20.04.4-LTS
