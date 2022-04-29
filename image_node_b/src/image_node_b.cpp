@@ -86,7 +86,7 @@ void callback(const sensor_msgs::PointCloudConstPtr &point_feature_msg,
 
 int main(int argc, char **argv) {
 
-  m_camera = camodocal::CameraFactory::instance()->generateCameraFromYamlFile("/../../config/euroc/euroc_config_fix_extrinsic.yaml");
+  m_camera = camodocal::CameraFactory::instance()->generateCameraFromYamlFile("../../config/euroc/euroc_config_fix_extrinsic.yaml");
   K_ = m_camera->initUndistortRectifyMap(undist_map1_,undist_map2_);  
 
   ros::init(argc, argv, "sync_control_node"); 
