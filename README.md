@@ -25,6 +25,11 @@
    - vins_estimator/src/loop_closure/TemplatedLoopDetector.h
    - vins_estimator/src/loop_closure/demoDetector.h
    - vins_estimator/src/loop_closure/loop_closure.h   
+9. modify output path in config/*.yaml 
+   - config/euroc/euroc_config_fix_extrinsic.yaml
+   - config/euroc/euroc_config_no_extrinsic.yaml
+   - config/euroc/euroc_config.yaml
+   - config/euroc/loop.yaml
 
 ## 1. Prerequisites
 ### Ubuntu 20.04.4-LTS
@@ -85,7 +90,7 @@ We suggust you select difficult sequences to test.
 
 run in the ~/catkin_plvins/
 ```
-	roslaunch plvins_estimator plvins_show_linepoint.launch
+	roslaunch plvins_estimator plvins-show-linepoint.launch
 	rosbag play YOUR_PATH_TO_DATASET/MH_05_difficult.bag
 ```
 or 
