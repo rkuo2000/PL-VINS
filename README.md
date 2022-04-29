@@ -10,6 +10,7 @@
    - camera_model/src/chessboard/Chessboard.cc
    - feature_tracker/src/feature_tracker_node.cpp
    - pose_graph/src/ThirdParty/DVision/BRIEF.cpp
+   - vins_estimator/src/loop_closure/ThirdParty/DVision/BRIEF.cpp
 4. cv::CALIB_CB_ADAPTIVE_THRESH, cv::CALIB_CB_NORMALIZE_IMAGE, cv::CALIB_CB_FILTER_QUADS, cv::CALIB_CB_FAST_CHECK
    - camera_model/src/chessboard/Chessboard.cc:
 5. cv::INTER_LINEAR
@@ -20,6 +21,9 @@
 7. cv::FONT_HERSHEY_SIMPLEX
    - pose_graph/src/keyframe.cpp
    - pose_graph/src/pose_graph.cpp
+8. #include <opencv2/opencv.hpp>, #include <opencv2/highgui.hpp>
+   - vins_estimator/src/loop_closure/loop_closure.h
+   - vins_estimator/src/loop_closure/demoDetector.h
 
 ## 1. Prerequisites
 ### Ubuntu 20.04.4-LTS
