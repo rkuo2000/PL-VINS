@@ -52,7 +52,7 @@ Visualization Manager:
       Cell Size: 1
       Class: rviz/Grid
       Color: 130; 130; 130
-      Enabled: false
+      Enabled: true
       Line Style:
         Line Width: 0.029999999329447746
         Value: Lines
